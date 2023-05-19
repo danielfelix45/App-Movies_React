@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './style.css';
 
 import api from '../../services/api';
@@ -33,7 +34,7 @@ function Movie() {
     loadMovie();
 
     return () => {
-      console.log('Desmontado');
+      console.log('Disassembled components');
     }
   }, [navigate, id])
 
@@ -45,19 +46,19 @@ function Movie() {
     const hasMovie = saveMovies.some((saveMovies) => saveMovies.id === movie.id);
 
     if (hasMovie) {
-      alert('This movie is already on your list');
+      toast.warn('This movie is already on your list');
       return;
     }
 
     saveMovies.push(movie);
     localStorage.setItem("@primeflix", JSON.stringify(saveMovies));
-    alert('Successfully saved movie');
+    toast.success('Successfully saved movie');
   }
 
   if (loading) {
     return (
       <div className='filme-info'>
-        <h1>Carregando...</h1>
+        <h1>Loading...</h1>
       </div>
     )
   }
