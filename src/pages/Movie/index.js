@@ -24,7 +24,7 @@ function Movie() {
           setLoading(false);
         })
         .catch(() => {
-          console.log("Filme não encontrado");
+          console.log("Movie not found");
           navigate("/", { replace: true });
           return;
         })
